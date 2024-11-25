@@ -20,7 +20,7 @@ $(document).ready(function() {
             data: JSON.stringify({ filters: filterValues }),
             success: function(response) {
                 console.log('Plot request successful');
-                $('#myTabContent').html(response.chart);
+                $('#filtered-table').html(response.chart);
             },
             error: function(error) {
                 console.log('Error:', error);

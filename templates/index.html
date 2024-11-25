@@ -112,17 +112,20 @@
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="tab-pane fade show active" id="home_" role="tabpanel" aria-labelledby="raw-data-tab">
+                            <h5>Raw Data</h5>
                             <div class="mt-5 table-responsive">
                                 {{ chart | safe }}
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="mt-5 table-responsive">
-                                {{ chart_filter | safe }}
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="filtered-table-tab">
+                            <h5>Filtered Data</h5>
+                            <div class="mt-5 table-responsive" id="filtered-table" >
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="plots-tab">
+                            <h5>Plots</h5>
+                        </div>
                     </div>
                 </div>
 
