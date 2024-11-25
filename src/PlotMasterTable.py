@@ -8,12 +8,23 @@ class PlotMasterTable:
         self.df = pd.read_csv(file_path)
 
 
-    def generate_html_chart(self, rows=10):
+    def generate_html_chart(self, rows=10, headers=None):
         # Load the CSV file into a DataFrame
         if rows:
             df_limited = self.df[:rows]
         else:
             df_limited = self.df
+
+        good_headers = False
+        if headers is not None:
+            if isinstance(headers, list):
+                if len(headers) > 0:
+                    good_headers = True
+
+        if good_headers:
+            # only get the columns that are in the headers list
+            df_limited = df_limited[headers]
+
         # Convert DataFrame to a list of lists and generate ASCII table
         html_string = df_limited.to_html()
 
