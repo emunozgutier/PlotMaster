@@ -1,10 +1,12 @@
 from flask import Flask, request, render_template, jsonify
+from PlotMasterServerTools import PlotMasterServerTools
 
 class PlotMasterServer:
     def __init__(self, root):
         self.app = Flask(__name__, template_folder='../templates', static_folder='../static')
         self.setup_routes()
         self.root = root
+        self.tools = PlotMasterServerTools(root)
 
     def setup_routes(self):
         @self.app.route('/', methods=['GET', 'POST'])
@@ -25,8 +27,14 @@ class PlotMasterServer:
 
         @self.app.route('/plot', methods=['POST'])
         def plot():
-            print("HI!!!")
-            chart = self.root.table.generate_html_chart()
+            print("Received POST request")
+            data = request.get_json()
+            print("Data received:", data)
+            filters = data.get('filters', [])
+            print("Filters received:", filters)
+            headers = self.tools.filter_field_important_values(filters)
+            print("Headers:", headers)
+            chart = self.root.table.generate_html_chart(headers=headers)
             return jsonify(chart=chart)
 
     def run(self):
