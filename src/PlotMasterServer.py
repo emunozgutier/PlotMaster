@@ -35,6 +35,13 @@ class PlotMasterServer:
             headers = self.tools.filter_field_important_values(filters)
             print("Headers:", headers)
             chart = self.root.table.generate_html_chart(headers=headers)
+            xaxis, yaxis = self.tools.get_xaxis_and_yaxis(filters)
+            print(f"xaxis: {xaxis}, yaxis: {yaxis}")
+            if xaxis is not None and yaxis is not None:
+                plot_file = self.root.plotter.plot(xaxis, yaxis)
+                print("Plot file:", plot_file)
+                # I need to
+                return jsonify(chart=chart, plot_file=plot_file)
             return jsonify(chart=chart)
 
     def run(self):
