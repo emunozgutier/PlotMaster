@@ -48,7 +48,14 @@ function handleDataHeaderItemClick($item) {
         });
 
         if ($existingItem.length === 0) {
-            const $newItem = $('<div class="row"><div class="col"><input class="form-check-input filter-field-list-item-check" type="checkbox" value="" checked><li class="list-group-item filter-field-list-item"></li></div></div>');
+            const $newItem = $(
+                '<div class="row">' +
+                    '<div class="col">' +
+                        '<input class="form-check-input filter-field-list-item-check" type="checkbox" value="" checked>' +
+                        '<li class="list-group-item filter-field-list-item"></li>' +
+                    '</div>' +
+                '</div>'
+);
             $newItem.find('li').text(itemText);
             $(this).append($newItem);
             console.log('Added item to active filter-field-list:', itemText);
