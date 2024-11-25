@@ -42,10 +42,19 @@ function handleDataHeaderItemClick($item) {
 
     const $activeFilterFieldLists = $('.filter-field.active .filter-field-list');
     $activeFilterFieldLists.each(function() {
-        const $newItem = $('<div class="row"><div class="col"><input class="form-check-input filter-field-list-item-check" type="checkbox" value="" checked><li class="list-group-item filter-field-list-item"></li></div></div>');
-        $newItem.find('li').text($item.text().trim());
-        $(this).append($newItem);
-        console.log('Added item to active filter-field-list:', $newItem.find('li').text().trim());
+        const itemText = $item.text().trim();
+        const $existingItem = $(this).find('.filter-field-list-item').filter(function() {
+            return $(this).text().trim() === itemText;
+        });
+
+        if ($existingItem.length === 0) {
+            const $newItem = $('<div class="row"><div class="col"><input class="form-check-input filter-field-list-item-check" type="checkbox" value="" checked><li class="list-group-item filter-field-list-item"></li></div></div>');
+            $newItem.find('li').text(itemText);
+            $(this).append($newItem);
+            console.log('Added item to active filter-field-list:', itemText);
+        } else {
+            console.log('Item already exists in active filter-field-list:', itemText);
+        }
     });
 }
 

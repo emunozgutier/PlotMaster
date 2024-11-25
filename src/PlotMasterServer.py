@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 
 class PlotMasterServer:
     def __init__(self, root):
@@ -22,6 +22,12 @@ class PlotMasterServer:
                     )
 
             return render_template('index.html')
+
+        @self.app.route('/plot', methods=['POST'])
+        def plot():
+            print("HI!!!")
+            chart = self.root.table.generate_html_chart()
+            return jsonify(chart=chart)
 
     def run(self):
         self.app.run(debug=True)
