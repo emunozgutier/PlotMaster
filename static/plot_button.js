@@ -24,6 +24,7 @@ $(document).ready(function() {
             success: function(response) {
                 console.log('Plot request successful');
                 $('#filtered-table-div').html(response.chart);
+                $('#filtered-plot-div').html(response.plot_file);
             },
             error: function(error) {
                 console.log('Error:', error);
