@@ -32,20 +32,30 @@ class touchPlotTable {
                 dfd.readCSV(this.file).then((df) => {
                     this.df = df;
                     df.print();
-                    this.addDataFrameToHTML(df);
+                    this.addDataFrameToHTML(df, this.$raw_data);
                     this.root.tpAxis.updateHeadersList(df.columns);
                 });
             }
         });
     }
 
-    addDataFrameToHTML(df) {
+    addDataFrameToHTML(df, $element) {
         const tableHTML = this.convertDataFrameToHTML(df);
-        this.$raw_data.html(tableHTML);
+        $element.html(tableHTML);
     }
 
+updateFilteredData() {
+    var json_axis = this.root.tpAxis.getAxis();
+    // add all the list from json into one list
+    var combined_list = [].concat(json_axis.x_axis, json_axis.y_axis, json_axis.color_axis, json_axis.group_axis, json_axis.filter_axis);
+    var filtered_df = this.df.loc({ columns: combined_list })
+    if (filtered_df) {
+        this.addDataFrameToHTML(filtered_df, this.$filtered_data);
+    }
+}
+
     convertDataFrameToHTML(df) {
-        let html = `table class="${this.class_table}">`;
+        let html = `<table class="${this.class_table} table-responsive">`;
         html += '<thead><tr>';
         df.columns.forEach(col => {
             html += `<th>${col}</th>`;

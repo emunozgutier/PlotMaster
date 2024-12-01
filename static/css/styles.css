@@ -1,11 +1,13 @@
-body {
-    background-color: #000000;
-    color: white;
-}
+
 .table td {
     vertical-align: middle;
 }
 
+.tp-axis-dimensions-block.active{
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
 /* Add this CSS to limit the height of table cells */
 .limited-height {
     max-height: 50px; /* Adjust the height as needed */

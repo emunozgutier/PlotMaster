@@ -23,6 +23,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <!-- TouchPlot -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <link rel="stylesheet" href="../static/css/styles.css">
 <script src="https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.min.js"></script>
 <script type="module" src="../static/js/main.js"></script>
@@ -49,36 +50,46 @@
                         <button type="button" id="plotButton" class="col-2 btn btn-primary">Plot!</button>
                     </div>
                     <div class="row">
-                        <div class="col-6 filter-items" id="tp-axis-header-list">
+                        <div class="col-6 filter-items">
+                            <ul class="list-group" id="tp-axis-header-list">
+
+                            </ul>
+
                         </div>
                         <div class="col-6">
                             <div class="list-group">
-                                <a href="#" class="tp-axis-list-group list-group-item-action filter-field active" aria-current="true">
+                                <a href="#" class="tp-axis-dimensions-block list-group-item-action filter-field active" aria-current="true">
                                     <div class="container w-100 justify-content-between">
-                                        <h5 class="row">menus</h5>
-                                        <ul class="row list-group filter-field-list">
+                                        <h5 class="row">filter-axis</h5>
+                                        <ul class="row list-group tp-axis-dimensions-list" id="tp-axis-filter-axis-list">
                                         </ul>
                                     </div>
                                 </a>
-                                <a href="#" class="tp-axis-list-group list-group-item-action filter-field" aria-current="true">
+                                <a href="#" class="tp-axis-dimensions-block list-group-item-action filter-field" aria-current="true">
                                     <div class="container w-100 justify-content-between">
-                                        <h5 class="row">group-by</h5>
-                                        <ul class="row list-group filter-field-list">
+                                        <h5 class="row">group-axis</h5>
+                                        <ul class="row list-group tp-axis-dimensions-list" id="tp-axis-group-axis-list">
                                         </ul>
                                     </div>
-
                                 </a>
-                                <a href="#" class="tp-axis-list-group list-group-item-action filter-field">
+                                <a href="#" class="tp-axis-dimensions-block list-group-item-action filter-field" aria-current="true">
+                                    <div class="container w-100 justify-content-between">
+                                        <h5 class="row">color-axis</h5>
+                                        <ul class="row list-group tp-axis-dimensions-list" id="tp-axis-color-axis-list">
+                                        </ul>
+                                    </div>
+                                </a>
+                                <a href="#" class="tp-axis-dimensions-block list-group-item-action filter-field">
                                     <div class="container w-100 justify-content-between">
                                         <h5 class="row">y-axis</h5>
-                                        <ul class="row list-group filter-field-list">
+                                        <ul class="row list-group tp-axis-dimensions-list" id="tp-axis-y-axis-list">
                                         </ul>
                                     </div>
                                 </a>
-                                <a href="#" class="tp-axis-list-group list-group-item-action filter-field">
+                                <a href="#" class="tp-axis-dimensions-block list-group-item-action filter-field">
                                     <div class="container w-100 justify-content-between">
                                         <h5 class="row">x-axis</h5>
-                                        <ul class="row list-group filter-field-list">
+                                        <ul class="row list-group tp-axis-dimensions-list" id="tp-axis-x-axis-list">
                                         </ul>
                                     </div>
                                 </a>
@@ -107,12 +118,12 @@
                     </div>
                     <div class="tab-pane fade" id="filtered-table" role="tabpanel" aria-labelledby="filtered-table-tab">
                         <h5>Filtered Data</h5>
-                        <div class="mt-5 table-responsive" id="tp-table-filter-data" >
+                        <div class="mt-5 table-responsive" id="tp-table-filtered-data" >
                         </div>
                     </div>
                     <div class="tab-pane fade" id="plots" role="tabpanel" aria-labelledby="plots-tab">
                         <h5>Plots</h5>
-                        <div class="mt-5 table-responsive" id="filtered-plot-div" >
+                        <div id="tp-plot-plotly-div" >
                         </div>
                     </div>
                 </div>
