@@ -61,10 +61,6 @@ class TouchPlotAxis {
                 const $item = $(event.currentTarget);
                 this.handleDimensionBlockClick($item);
             });
-            $(document).on('change', this.$dimensions_check, (event) => {
-                const $checkbox = $(event.currentTarget);
-                this.handleCheckboxChange($checkbox);
-            });
         });
     }
 
@@ -99,21 +95,20 @@ class TouchPlotAxis {
             }
         });
 
+        // if this is the x-axis-list, then remove all the items from the list
+        if (list_id == 'tp-axis-x-axis-list') {
+            active_list.empty();
+        }
         // if the item is not in the list, add it
         if (!found) {
             active_list.append(`<li class="${item_class}">${$item.text().trim()}</li>`);
         }
+
         this.root.tpTable.updateFilteredData();
+        this.root.tpPlotly.updatePlot();
 
     }
 
-    handleCheckboxChange($checkbox) {
-        if (!$checkbox.is(':checked')) {
-            const $listItem = $checkbox.closest('.row');
-            console.log('Checkbox unchecked, removing list item:', $listItem.find('li').text().trim());
-            $listItem.remove();
-        }
-    }
 
     updateHeadersList(headers) {
         let html = '';
