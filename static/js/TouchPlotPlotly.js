@@ -9,16 +9,7 @@ class touchPlotPlotly {
     constructor(root) {
         this.root = root;
         this.main();
-        this.json_axis = "":
-    }
-
-
-        const layout = {title: "World Wide Wine Production"};
-
-        Plotly.newPlot("tp-plot-plotly-div", data, layout);
-    }
-
-
+        this.json_axis = "";
     }
 
     updatePlot() {
