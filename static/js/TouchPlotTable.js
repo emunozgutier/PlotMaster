@@ -31,7 +31,6 @@ class touchPlotTable {
             if (this.file) {
                 dfd.readCSV(this.file).then((df) => {
                     this.df = df;
-                    df.print();
                     this.addDataFrameToHTML(df, this.$raw_data);
                     this.root.tpAxis.updateHeadersList(df.columns);
                 });
